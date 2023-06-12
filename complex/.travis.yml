@@ -13,3 +13,10 @@ after_success:
   - docker build -t icannomnoms/multi-nginx ./nginx 
   - docker build -t icannomnoms/multi-server ./server
   - docker build -t icannomnoms/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push icannomnoms/multi-client
+  - docker push icannomnoms/multi-nginx
+  - docker push icannomnoms/multi-server
+  - docker push icannomnoms/multi-worker
